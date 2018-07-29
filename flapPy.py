@@ -16,6 +16,7 @@ c = pygame.time.Clock()
 
 class Bird():
 	def __init__(self):
+        self.radius = 20
 		self.x = 100
 		self.y = 200
 		self.w = 25
@@ -27,10 +28,12 @@ class Bird():
 		self.rect = pygame.Rect(self.x, self.y, self.w, self.h)
 		self.velocity += self.gravity
 		self.y += self.velocity
+		if self.y < self.radius:
+				self.y = self.radius
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_SPACE]:
 			self.velocity = -10
-		pygame.draw.circle(screen, (255, 255, 255), (self.x, self.y), 20)
+		pygame.draw.circle(screen, (255, 255, 255), (self.x, self.y), self.radius)
 			
 		
 class Platform():
